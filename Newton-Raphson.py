@@ -3,8 +3,8 @@ import sympy as sym
 
 #Define our functions of interest in form f(x,y) = 0
 X, Y = sym.symbols('X Y', real = True)
-F = X**3 - Y - 1
-G = X - Y**3 - 1
+F = Y - X**3 + 1
+G = Y**3 - X + 1
 
 #takes initial values, number of iterates, and functions of interest
 def newton_raphson(x0,y0,n,f,g):
@@ -14,15 +14,18 @@ def newton_raphson(x0,y0,n,f,g):
         inverse_jacobian = jacobian ** -1
     except jacobian.det() == 0:
         raise TypeError('The matrix doesn\'t have an inverse')
-    funciton_matrix = sym.Matrix([[f],[g]])
+    function_matrix = sym.Matrix([[f],[g]])
+    previous_solution = sym.Matrix([[x0],[y0]])
+    print('Our 1st iterates are {}'.format(previous_solution))
     for i in range(n):
-        next_solution = previous_solution - (inverse_jacobian*
-        
-        print(inverse_jacobian.subs({X:5,Y:2}))
+        next_solution = previous_solution - (inverse_jacobian * function_matrix).subs({X:previous_solution[0],Y:previous_solution[1]})
+        print('Our {}th iterates are {}'.format(i+2, next_solution.evalf()))
+        previous_solution = next_solution
+    
 
 
 
-newton_raphson(0,0,5,F,G)
+newton_raphson(0.5,-0.5,5,F,G)
 
 
 
