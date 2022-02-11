@@ -19,16 +19,12 @@ def newton_raphson(x0,y0,n,f,g):
     lambdify_function_and_inv_jacobian = sym.lambdify([X,Y], function_and_inv_jacobian, modules = 'sympy')
     previous_solution = sym.Matrix([[x0],[y0]])
     print('Our 1st iterates are {}'.format(previous_solution))
-    #the actual method, it is very slow for sym functions but works very well for polynomials 
+    #the actual method
     for i in range(n):
         next_solution = previous_solution - lambdify_function_and_inv_jacobian(previous_solution[0],previous_solution[1])
         previous_solution = next_solution
         print('Our {}th iterates are {}'.format(i+2, previous_solution))
-        
-        #print(previous_solution)
 
-
-        
 
 newton_raphson(-1.0,1.0,500,F,G)
 
