@@ -23,7 +23,7 @@ def newton_raphson(x0,y0,n,f,g):
     for i in range(n):
         next_solution = previous_solution - lambdify_function_and_inv_jacobian(previous_solution[0],previous_solution[1])
         previous_solution = next_solution
-        print('Our {}th iterates are {}'.format(i+2, previous_solution))
+        print('Our {}th iterates are x = {} and y = {}.'.format(i+2, previous_solution[0], previous_solution[1]))
 
 
 newton_raphson(-1.0,1.0,500,F,G)
