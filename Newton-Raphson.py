@@ -4,7 +4,7 @@ import sympy as sym
 #Define our functions of interest in form f(x,y) = 0
 X, Y = sym.symbols('X Y', real = True)
 F = X*sym.cos(Y) + Y*sym.sin(X) + 1
-G = X**2 + Y**2 - 4
+G = X**2 + Y**2 - 4 
 
 #takes initial values, number of iterates, and functions of interest
 def newton_raphson(x0,y0,n,f,g):
